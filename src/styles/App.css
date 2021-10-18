@@ -1,0 +1,55 @@
+.App {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+  /*text-align: left;*/
+}
+.App-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    word-spacing: 0px;
+    color: #00B194;
+    font-weight: 700;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+    text-align: center;
+    padding: 30px;
+}
+.wrapper {
+  height: 100vh;
+}
+nav {
+  display: flex;
+}
+nav button {
+  box-shadow: 0 3px 0 0 rgb(226 228 231 / 75%);
+    margin: 1px 20px 20px 20px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #00B194;
+    border-color: #00B194;
+}
+a {
+  text-decoration: none;
+}
+
+
+footer {
+  clear: both;
+  position: relative;
+  height: 20px;
+  font-size: 10px;
+  margin-top: -30px;
+}
