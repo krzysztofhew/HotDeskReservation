@@ -8,9 +8,6 @@ import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 
 class AddBooking extends React.Component {
 
-    minDate = new Date().toISOString().slice(0, 10);
-
-    maxDate = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().slice(0, 10);
 
     state = {
         bookingOwner: '',
@@ -20,6 +17,10 @@ class AddBooking extends React.Component {
         bookingDate: this.minDate,
 
     }
+    minDate = new Date().toISOString().slice(0, 10);
+
+    maxDate = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().slice(0, 10);
+
 
     handleDate = (e) => {
         this.setState({
@@ -62,10 +63,11 @@ class AddBooking extends React.Component {
                     guest: false,
                     bookingDate: this.minDate,
                 })
-                // return <Redirect to="/" />
+                //return <Redirect to="/" />
             }
         } else {
-            alert("Podaj prawidłową nazwę użytkownika")
+            alert("Podaj prawidłową nazwę użytkownika");
+            window.location = 'http://localhost:3000/hotdesk/addBooking';
         }
     }
 
@@ -84,14 +86,30 @@ class AddBooking extends React.Component {
                 <input type="date" value={this.state.bookingDate}
                     min={this.minDate} max={this.maxDate} onChange={this.handleDate} />
                 <br />
-                <label htmlFor="office">Wybierz biuro </label>
+                {/* <label htmlFor="office">Wybierz biuro </label>
                 <input type="text" placeholder="nazwa biura" value={this.state.office} id="office"
-                    onChange={this.handleOffice} />
+                    onChange={this.handleOffice} /> */}
+                <label htmlFor="office">Wybierz biuro </label>
+                <select className="select" value={this.state.office} id="office"
+                    onChange={this.handleOffice}>
+                    <option value=""></option>
+                    <option value="Gondor">Gondor</option>
+                    <option value="Isengard">Isengard</option>
+                    <option value="Shire">Shire</option>
+                    <option value="Mordor">Mordor</option>
+                </select>
                 <br />
                 <label htmlFor="desk">Wybierz biurko </label>
-                <input type="text" placeholder="numer biurka" value={this.state.desk} id="desk"
-                    onChange={this.handleDesk}
-                />
+                {/* <input type="text" placeholder="numer biurka" value={this.state.desk} id="desk"
+                    onChange={this.handleDesk}/> */}
+                <select className="select" value={this.state.desk} id="desk"
+                    onChange={this.handleDesk}>
+                    <option value=""></option>
+                    <option value="Gondor.1">Gondor.1</option>
+                    <option value="Gondor.2">Gondor.2</option>
+                    <option value="Gondor.3">Gondor.3</option>
+                    <option value="Gondor.4">Gondor.4</option>
+                </select>
                 <nav>
                     <NavLink to="/hotdesk/bookingList" classsName="saveButton"><button onClick={this.handleClick}>Zapisz</button></NavLink>
                     <NavLink to="/" classsName="cancelButton"><button type="button">Anuluj</button></NavLink>

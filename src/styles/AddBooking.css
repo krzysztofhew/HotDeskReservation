@@ -4,6 +4,8 @@ input {
     font-size: 13px;
     font-family: 'PT Sans', sans-serif;
     border-radius: 5px;
+    border: solid;
+
 }
 .form {
     width: 100%;
@@ -40,4 +42,13 @@ nav {
     color: #00B194;
     background-color: #fff;
     border-color: #fff
+}
+
+.select {
+    margin: 10px;
+    padding: 5 px 14 px;
+    font-size: 13px;
+    font-family: 'PT Sans', sans-serif;
+    border-radius: 5px;
+    border: solid;
 }

@@ -4,6 +4,7 @@ import AddBooking from './AddBooking.js';
 import BookingList from './BookingList.js';
 import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
+import header from '../img/header.jpg';
 
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
     bookings: [
       {
         id: 0,
-        bookingDate: '2021-10-31',
+        bookingDate: '2021-10-19',
         operator: 'Adam Mickiewicz',
         bookingOwner: 'Stanisław Lem',
         guest: true,
@@ -128,14 +129,24 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <div className="wrapper">
-            <header className="App-header">
-              Hot Desk by PORTA KMI POLAND
-            </header>
+
+            <div id="AppHeader">
+              <img src={header} alt="Menu PORTA Intranet" />
+            </div>
+
+            <div id="AppHeaderText">
+              Hot Desk
+            </div>
+
             <body>
               <nav>
                 {/* <NavLink to="/" exact>Start</NavLink>  */}
-                <NavLink to="/hotdesk/addBooking" className="navButton"><button type="button">Dodaj rezerwację</button></NavLink>
-                <NavLink to="/hotdesk/bookingList" className="navButton"><button type="button">Przegląd rezerwacji</button></NavLink>
+                <NavLink to="/hotdesk/addBooking" className="navButton">
+                  <button type="button">Dodaj rezerwację</button>
+                </NavLink>
+                <NavLink to="/hotdesk/bookingList" className="navButton">
+                  <button type="button">Przegląd rezerwacji</button>
+                </NavLink>
               </nav>
               <section>
                 <Routes>
@@ -158,7 +169,7 @@ class App extends React.Component {
             Copyright © 2021, PORTA KMI POLAND (Agnieszka Hewusz)
           </footer>
         </div>
-      </BrowserRouter>
+      </BrowserRouter >
 
     );
   }
