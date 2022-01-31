@@ -1,13 +1,7 @@
-.App {
+.app {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
  }
- #AppHeader{
-  width: 100%; 
-  height: auto; 
-  display: flex;
- }
-
 #AppHeaderText {
     font-size: 14px;
     color: #00B194;
@@ -23,6 +17,9 @@
 }
 nav {
   display: flex;
+}
+.deleted{
+  text-align: right;
 }
 nav button {
   box-shadow: 0 3px 0 0 rgb(226 228 231 / 75%);

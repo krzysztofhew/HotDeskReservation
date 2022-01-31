@@ -1,180 +1,88 @@
-import React from 'react';
-import '../styles/App.css';
-import AddBooking from './AddBooking.js';
-import BookingList from './BookingList.js';
-import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
-import header from '../img/header.jpg';
+import React, { useState } from "react";
+import { BsCalendarPlus, BsFillPersonFill, BsCalendarCheck, BsCalendar3 } from 'react-icons/bs';
 
+import BookingProvider from "./BookingProvider";
 
-class App extends React.Component {
+import '../styles/App.css'
+import Header from "./Header";
+import Add from "./Add";
+import User from "./User";
+import AddBookingForm from "./AddBookingForm";
+import AllBookingsReview from "./AllBookingsReview";
+import BookingsToAccept from "./BookingsToAccept";
+import UserBookings from "./UserBookings";
+import { BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
 
-  //docelowo id z bazy!
-  counter = 2;
+const App = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  state = {
-    bookings: [
-      {
-        id: 0,
-        bookingDate: '2021-10-19',
-        operator: 'Adam Mickiewicz',
-        bookingOwner: 'Stanisław Lem',
-        guest: true,
-        office: 'devs',
-        desk: 'IT.4.23',
-        bookingStatus: null,
-        statusSetDate: '',
-        accept: 'Artur Akceptator',
-        deleted: false,
-      },
-      {
-        id: 1,
-        bookingDate: '2021-11-28',
-        operator: 'Zenon Nowak',
-        bookingOwner: 'JRR Tolkien',
-        guest: false,
-        office: 'devs',
-        desk: 'IT.4.15',
-        bookingStatus: null,
-        statusSetDate: '',
-        accept: '',
-        deleted: false,
-      },
-      {
-        id: 2,
-        bookingDate: '2021-11-15',
-        operator: 'Zenon Nowak',
-        bookingOwner: 'Andrzej Ziemiański',
-        guest: false,
-        office: 'devs',
-        desk: 'IT.4.15',
-        bookingStatus: null,
-        statusSetDate: '',
-        accept: '',
-        deleted: false,
-      }
-    ]
-  }
-  changeBookingStatusAccept = (id) => {
-    console.log("accept status booking " + id);
-    const bookings = [...this.state.bookings];
-    bookings.forEach(booking => {
-      if (booking.id === id) {
-        booking.bookingStatus = true;
-        booking.statusSetDate = new Date().getTime()
-        console.log(booking);
-      }
-    })
-    this.setState({
-      bookings
-    })
-  }
-  changeBookingStatusRefuse = (id) => {
-    console.log("refuse status booking " + id);
-    const bookings = [...this.state.bookings];
-    bookings.forEach(booking => {
-      if (booking.id === id) {
-        booking.bookingStatus = false;
-        booking.statusSetDate = new Date().getTime()
-        console.log(booking);
-      }
-    })
-
-    this.setState({
-      bookings
-    })
-  }
-  deleteBooking = (id) => {
-    console.log("delete booking " + id);
-    const bookings = [...this.state.bookings];
-    bookings.forEach(booking => {
-      if (booking.id === id) {
-        booking.deleted = true;
-        console.log(booking);
-      }
-    })
-    /*bookings = bookings.filter(booking => booking.id === id)*/
-    this.setState({
-      bookings
-    })
-    alert("Rezerwacja została usunięta")
-  }
-  addBooking = (bookingDate, bookingOwner, guest, office, desk) => {
-    //console.log("dodany obiekt");
-    const booking = {
-      id: this.counter,
-      bookingDate: bookingDate, //from input
-      operator: 'Pobrac z commonsDao', //logged user!!!!
-      bookingOwner: bookingOwner, //from input
-      guest: guest, //from input
-      office: office, // from input
-      desk: desk, // from input 
-      bookingStatus: null,
-      statusSetDate: '',
-      accept: 'Uprawnienia! Pobrac z commonsDao', //???? logged user 
-      deleted: false,
+    const handleOnClose = () => {
+        setIsModalOpen(false);
     }
-    this.counter++
-    console.log(booking, this.counter);
+    const handleOnClick = () => {
+        setIsModalOpen(true);
+    }
+    // const handleOnClickMyBookings = (event) => {
+    //     console.log('my bookings')
+    //     event.preventDefault();
+    // };
 
-    this.setState(prevState => ({
-      bookings: [...prevState.bookings, booking]
-    }))
+    // const handleOnClickBookingsToAccept = (event) => {
+    //     console.log('accept bookings')
 
-    return true
-  }
-  render() {
+    //     event.preventDefault();
+    // };
+
+
     return (
+        <BookingProvider>
+            <Router>
 
-      <BrowserRouter>
-        <div className="App">
-          <div className="wrapper">
+                <Header />
+                <User />
+                {/*<Add />*/}
 
-            <div id="AppHeader">
-              <img src={header} alt="Menu PORTA Intranet" />
-            </div>
 
-            <div id="AppHeaderText">
-              Hot Desk
-            </div>
+                <div className='d-flex'>
 
-            <body>
-              <nav>
-                {/* <NavLink to="/" exact>Start</NavLink>  */}
-                <NavLink to="/hotdesk/addBooking" className="navButton">
-                  <button type="button">Dodaj rezerwację</button>
-                </NavLink>
-                <NavLink to="/hotdesk/bookingList" className="navButton">
-                  <button type="button">Przegląd rezerwacji</button>
-                </NavLink>
-              </nav>
-              <section>
-                <Routes>
 
-                  <Route path="/hotdesk/addBooking" exact element={<AddBooking add={this.addBooking} />} />
+                    <div className='p-2'>
+                        <button className='btn btn-warning ng-scope' onClick={handleOnClick}> <BsCalendarPlus /> Dodaj rezerwację </button>
+                    </div>
 
-                  <Route path="/hotdesk/bookingList" exact element={<BookingList bookings={this.state.bookings} accept={this.changeBookingStatusAccept}
-                    refuse={this.changeBookingStatusRefuse} delete={this.deleteBooking} />} />
+                    <NavLink to="/" >
+                        <div className='ml-auto p-2'>
+                            <button className='btn btn-error ng-scope' > <BsCalendar3 /> Wszystkie rezerwacje  </button>
+                        </div>
+                    </NavLink>
 
-                </Routes>
-                {/* <AddBooking add={this.addBooking} />
+                    <NavLink to="/mybookings" >
+                        <div className='ml-auto p-2'>
+                            <button className='btn btn-primary'  > <BsFillPersonFill /> Moje rezerwacje  </button>
+                        </div>
+                    </NavLink>
 
-              <BookingList bookings={this.state.bookings} accept={this.changeBookingStatusAccept}
-                refuse={this.changeBookingStatusRefuse} delete={this.deleteBooking} /> */}
+                    <NavLink to="/acceptbookings" >
+                        <div className='p-2'>
+                            <button className='btn btn-info ng-scope' > <BsCalendarCheck /> Rezerwacje do akceptacji </button>
+                        </div>
+                    </NavLink>
 
-              </section>
-            </body>
-          </div>
-          <footer>
-            Copyright © 2021, PORTA KMI POLAND (Agnieszka Hewusz)
-          </footer>
-        </div>
-      </BrowserRouter >
+                </div>
+                <AddBookingForm handleOnClose={handleOnClose} isModalOpen={isModalOpen} />
 
+
+                <body>
+                    <section>
+                        <Switch>
+                            <Route path="/" exact component={AllBookingsReview} />
+                            <Route path="/mybookings" exact component={UserBookings} />
+                            <Route path="/acceptbookings" exact component={BookingsToAccept} />
+                        </Switch>
+                    </section>
+                </body>
+            </Router>
+        </BookingProvider>
     );
-  }
-}
-
+};
 export default App;
-
-

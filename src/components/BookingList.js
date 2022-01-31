@@ -5,7 +5,6 @@ import '../styles/BookingTable.css';
 
 
 const BookingList = (props) => {
-    //*TODO wyswietlac tylko przyszle rezerwacje 
     const widthMin = {
         width: '15%'
     }
@@ -67,12 +66,12 @@ const BookingList = (props) => {
                         <td style={widthMin}>Opcje</td>
                     </tr>
                 </table>
-                {bookingsToAccept}
+                {/* {bookingsToAccept} */}
                 {bookingsToAccept.length > 0 ? bookingsToAccept : <p>Wszystkie rezerwacje zostały zaakceptowane</p>}
             </div>
             <hr />
-            <div className="bookingListAccepted">
-                <h4 className="headerTable">Zaakceptowane rezerwacje</h4>
+            <div className="bookingList">
+
 
                 <table className='bookingTable'>
 
@@ -81,10 +80,11 @@ const BookingList = (props) => {
                         <td style={widthMax}>Właściciel rezerwacji</td>
                         <td style={widthMin}>Nazwa biura</td>
                         <td style={widthMin}>Numer biurka</td>
+                        <td style={widthMin}>Status</td>
                         <td style={widthMin}>Opcje</td>
                     </tr>
                 </table>
-                {acceptedBookings.length > 0 ? acceptedBookings : <p>Brak zaakceptowanych rezerwacji</p>}
+                {acceptedBookings.length > 0 ? acceptedBookings : <p>Brak rezerwacji do wyświetlenia</p>}
             </div>
             <hr />
         </>
